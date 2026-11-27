@@ -1,0 +1,16 @@
+{
+  "name": "QuizTime",
+  "short_name": "QuizTime",
+  "description": "اختبر معلوماتك، وتحدّى أصحابك! Think Fast. Play Together.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0B0D19",
+  "theme_color": "#8057FF",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

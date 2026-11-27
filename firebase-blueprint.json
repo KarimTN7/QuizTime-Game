@@ -1,0 +1,218 @@
+{
+  "entities": {
+    "PublicUserProfile": {
+      "title": "PublicUserProfile",
+      "description": "Non-PII player profile, progression stats, unlocked avatars, and achievements for leaderboards and social features.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "displayName": { "type": "string", "minLength": 2, "maxLength": 40 },
+        "avatarId": { "type": "string", "minLength": 1, "maxLength": 40, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "level": { "type": "number" },
+        "xp": { "type": "number" },
+        "totalScore": { "type": "number" },
+        "totalMatches": { "type": "number" },
+        "wins": { "type": "number" },
+        "losses": { "type": "number" },
+        "bestScore": { "type": "number" },
+        "currentStreak": { "type": "number" },
+        "lastPlayedDate": { "type": "string", "maxLength": 20 },
+        "favoriteCategory": { "type": "string", "maxLength": 40 },
+        "achievements": { "type": "array" },
+        "unlockedAvatars": { "type": "array" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "displayName", "avatarId", "level", "xp", "totalScore", "totalMatches", "wins", "losses", "bestScore", "currentStreak", "achievements", "unlockedAvatars", "createdAt", "updatedAt"]
+    },
+    "PrivateUserInfo": {
+      "title": "PrivateUserInfo",
+      "description": "Owner-only PII and private account preferences.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "email": { "type": "string", "maxLength": 160 },
+        "notificationsEnabled": { "type": "boolean" },
+        "profilePublic": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "notificationsEnabled", "profilePublic", "createdAt", "updatedAt"]
+    },
+    "MatchHistoryEntry": {
+      "title": "MatchHistoryEntry",
+      "description": "Completed singleplayer or multiplayer match summary owned by the player.",
+      "type": "object",
+      "properties": {
+        "ownerId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "mode": { "type": "string", "maxLength": 40 },
+        "isMultiplayer": { "type": "boolean" },
+        "categorySummary": { "type": "string", "maxLength": 120 },
+        "score": { "type": "number" },
+        "correctCount": { "type": "number" },
+        "totalCount": { "type": "number" },
+        "won": { "type": "boolean" },
+        "xpEarned": { "type": "number" },
+        "playedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["ownerId", "mode", "isMultiplayer", "categorySummary", "score", "correctCount", "totalCount", "won", "xpEarned", "playedAt"]
+    },
+    "FriendLink": {
+      "title": "FriendLink",
+      "description": "Accepted friend entry stored under a user's friends subcollection.",
+      "type": "object",
+      "properties": {
+        "ownerId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "friendUid": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "friendName": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "friendAvatarId": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["ownerId", "friendUid", "friendName", "friendAvatarId", "createdAt"]
+    },
+    "FriendRequest": {
+      "title": "FriendRequest",
+      "description": "Friend request or room invite between two authenticated players.",
+      "type": "object",
+      "properties": {
+        "fromUid": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "toUid": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "fromName": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "fromAvatarId": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "kind": { "type": "string", "enum": ["friend_request", "room_invite"] },
+        "roomCode": { "type": "string", "maxLength": 12 },
+        "status": { "type": "string", "enum": ["pending", "accepted", "declined"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["fromUid", "toUid", "fromName", "fromAvatarId", "kind", "status", "createdAt", "updatedAt"]
+    },
+    "DailyChallengeEntry": {
+      "title": "DailyChallengeEntry",
+      "description": "A player's verified daily challenge submission for a given UTC date.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "displayName": { "type": "string", "minLength": 2, "maxLength": 40 },
+        "avatarId": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "score": { "type": "number" },
+        "correctCount": { "type": "number" },
+        "totalCount": { "type": "number" },
+        "completedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "displayName", "avatarId", "score", "correctCount", "totalCount", "completedAt"]
+    },
+    "MultiplayerRoom": {
+      "title": "MultiplayerRoom",
+      "description": "Real-time Firestore-synced multiplayer lobby and match state for serverless deployments.",
+      "type": "object",
+      "properties": {
+        "code": { "type": "string", "minLength": 4, "maxLength": 10, "pattern": "^[A-Z0-9]+$" },
+        "playlist": { "type": "string", "enum": ["private", "quick", "competitive", "casual"] },
+        "state": { "type": "string", "enum": ["WAITING", "STARTING", "IN_PROGRESS", "ROUND_RESULTS", "FINISHED"] },
+        "hostUid": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "currentRound": { "type": "number" },
+        "totalRounds": { "type": "number" },
+        "phaseEndsAt": { "type": "number" },
+        "roundStartedAt": { "type": "number" },
+        "questionIds": { "type": "array" },
+        "settings": { "type": "object" },
+        "roundReveal": { "type": "object" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["code", "playlist", "state", "hostUid", "currentRound", "totalRounds", "roundStartedAt", "questionIds", "settings", "createdAt", "updatedAt"]
+    },
+    "MultiplayerRoomPlayer": {
+      "title": "MultiplayerRoomPlayer",
+      "description": "Real-time participant entry inside a multiplayer room.",
+      "type": "object",
+      "properties": {
+        "roomCode": { "type": "string", "minLength": 4, "maxLength": 10 },
+        "uid": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "name": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "avatarId": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "score": { "type": "number" },
+        "streak": { "type": "number" },
+        "ready": { "type": "boolean" },
+        "isHost": { "type": "boolean" },
+        "hasAnsweredCurrent": { "type": "boolean" },
+        "lastPointsEarned": { "type": "number" },
+        "lastAnswerCorrect": { "type": "boolean" },
+        "joinedAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["roomCode", "uid", "name", "avatarId", "score", "streak", "ready", "isHost", "hasAnsweredCurrent", "lastPointsEarned", "joinedAt", "updatedAt"]
+    },
+    "MultiplayerRoomAnswer": {
+      "title": "MultiplayerRoomAnswer",
+      "description": "Immutable single answer submission per player per round inside a multiplayer room.",
+      "type": "object",
+      "properties": {
+        "roomCode": { "type": "string", "minLength": 4, "maxLength": 10 },
+        "uid": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "roundIndex": { "type": "number" },
+        "optionIndex": { "type": "number" },
+        "clientTimeMs": { "type": "number" },
+        "submittedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["roomCode", "uid", "roundIndex", "optionIndex", "clientTimeMs", "submittedAt"]
+    },
+    "MultiplayerRoomChatMessage": {
+      "title": "MultiplayerRoomChatMessage",
+      "description": "Lobby chat message or reaction inside a multiplayer room.",
+      "type": "object",
+      "properties": {
+        "roomCode": { "type": "string", "minLength": 4, "maxLength": 10 },
+        "senderId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "senderName": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "text": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "kind": { "type": "string", "enum": ["chat", "reaction", "system"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["roomCode", "senderId", "senderName", "text", "kind", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/PublicUserProfile" },
+      "description": "Public non-PII player profiles for leaderboards, avatars, and progression."
+    },
+    "/users/{userId}/private/{docId}": {
+      "schema": { "$ref": "#/entities/PrivateUserInfo" },
+      "description": "Strictly owner-only PII document storing email and account privacy toggles."
+    },
+    "/users/{userId}/matchHistory/{matchId}": {
+      "schema": { "$ref": "#/entities/MatchHistoryEntry" },
+      "description": "Owner-only historical record of completed solo and multiplayer matches."
+    },
+    "/users/{userId}/friends/{friendUid}": {
+      "schema": { "$ref": "#/entities/FriendLink" },
+      "description": "Friends list entries managed by the profile owner."
+    },
+    "/friendRequests/{requestId}": {
+      "schema": { "$ref": "#/entities/FriendRequest" },
+      "description": "Pending and resolved friend requests and live room invitations."
+    },
+    "/dailyChallenges/{dateKey}/entries/{userId}": {
+      "schema": { "$ref": "#/entities/DailyChallengeEntry" },
+      "description": "Daily challenge leaderboard submissions keyed by UTC date and user UID."
+    },
+    "/rooms/{roomCode}": {
+      "schema": { "$ref": "#/entities/MultiplayerRoom" },
+      "description": "Live Firestore-synced multiplayer rooms for serverless deployments."
+    },
+    "/rooms/{roomCode}/players/{playerId}": {
+      "schema": { "$ref": "#/entities/MultiplayerRoomPlayer" },
+      "description": "Participants and live scores within a multiplayer room."
+    },
+    "/rooms/{roomCode}/answers/{answerId}": {
+      "schema": { "$ref": "#/entities/MultiplayerRoomAnswer" },
+      "description": "Per-round answer submissions within a multiplayer room."
+    },
+    "/rooms/{roomCode}/chat/{messageId}": {
+      "schema": { "$ref": "#/entities/MultiplayerRoomChatMessage" },
+      "description": "Chat messages and quick reactions within a multiplayer room."
+    }
+  }
+}

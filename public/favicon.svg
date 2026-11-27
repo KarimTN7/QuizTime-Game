@@ -1,0 +1,17 @@
+<svg width="64" height="64" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="2" y="2" width="36" height="36" rx="9" fill="#12162A" stroke="url(#qt_border)" stroke-width="1.5" />
+  <path d="M20 7L31 18L20 29L9 18L20 7Z" fill="url(#qt_primary)" fill-opacity="0.24" stroke="url(#qt_primary)" stroke-width="1.75" stroke-linejoin="round" />
+  <path d="M20 12.5L25.5 18L20 23.5L14.5 18L20 12.5Z" fill="#29C7FF" />
+  <path d="M14 29.5L20 33L26 29.5" stroke="#FFB547" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <defs>
+    <linearGradient id="qt_primary" x1="9" y1="7" x2="31" y2="29" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8057FF" />
+      <stop offset="1" stop-color="#29C7FF" />
+    </linearGradient>
+    <linearGradient id="qt_border" x1="2" y1="2" x2="38" y2="38" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8057FF" stop-opacity="0.7" />
+      <stop offset="0.55" stop-color="#29C7FF" stop-opacity="0.55" />
+      <stop offset="1" stop-color="#FFB547" stop-opacity="0.6" />
+    </linearGradient>
+  </defs>
+</svg>

@@ -1,0 +1,6 @@
+{
+  "name": "QuizTime — Think Fast. Play Together.",
+  "description": "QuizTime — اختبر معلوماتك، وتحدّى أصحابك! Bilingual Arabic-first multiplayer trivia party game featuring 22 categories, 6 question modes, singleplayer challenges, and live multiplayer rooms.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
